@@ -1,25 +1,41 @@
+import { Droppable } from "@hello-pangea/dnd";
 import TaskCard from "./TaskCard";
 
 function Column({ title, tasks, onDelete, onEdit }) {
 
     return (
 
-        <div className="column">
+        <Droppable droppableId={title}>
 
-            <h2>{title}</h2>
+            {(provided) => (
 
-            {tasks.map(task => (
+                <div
+                    className="column"
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                >
 
-                <TaskCard
-                    key={task.id}
-                    task={task}
-                    onDelete={onDelete}
-                    onEdit={onEdit}
-                />
+                    <h2>{title}</h2>
 
-            ))}
+                    {tasks.map((task, index) => (
 
-        </div>
+                        <TaskCard
+                            key={task.id}
+                            task={task}
+                            index={index}
+                            onDelete={onDelete}
+                            onEdit={onEdit}
+                        />
+
+                    ))}
+
+                    {provided.placeholder}
+
+                </div>
+
+            )}
+
+        </Droppable>
 
     );
 
