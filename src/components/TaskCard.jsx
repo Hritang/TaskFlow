@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Draggable } from "@hello-pangea/dnd";
 
-function TaskCard({ task, onDelete, onEdit }) {
+function TaskCard({ task, index, onDelete, onEdit }) {
 
     const [editing, setEditing] = useState(false);
     const [title, setTitle] = useState(task.title);
@@ -14,43 +15,59 @@ function TaskCard({ task, onDelete, onEdit }) {
 
     return (
 
-        <div className="task-card">
+        <Draggable
+            draggableId={task.id.toString()}
+            index={index}
+        >
 
-            {editing ? (
+            {(provided) => (
 
-                <>
-                    <input
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
+                <div
+                    className="task-card"
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                >
 
-                    <button onClick={saveTask}>
-                        Save
-                    </button>
-                </>
+                    {editing ? (
 
-            ) : (
+                        <>
+                            <input
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
 
-                <>
-                    <p>{task.title}</p>
+                            <button onClick={saveTask}>
+                                Save
+                            </button>
+                        </>
 
-                    <button
-                        onClick={() => setEditing(true)}
-                    >
-                        Edit
-                    </button>
+                    ) : (
 
-                    <button
-                        className="delete-btn"
-                        onClick={() => onDelete(task.id)}
-                    >
-                        Delete
-                    </button>
-                </>
+                        <>
+                            <p>{task.title}</p>
+
+                            <button
+                                onClick={() => setEditing(true)}
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                className="delete-btn"
+                                onClick={() => onDelete(task.id)}
+                            >
+                                Delete
+                            </button>
+                        </>
+
+                    )}
+
+                </div>
 
             )}
 
-        </div>
+        </Draggable>
 
     );
 
