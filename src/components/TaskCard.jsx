@@ -8,6 +8,8 @@ function TaskCard({ task, index, onDelete, onEdit }) {
 
     const saveTask = () => {
 
+        if (title.trim() === "") return;
+
         onEdit(task.id, title);
         setEditing(false);
 
@@ -32,33 +34,54 @@ function TaskCard({ task, index, onDelete, onEdit }) {
                     {editing ? (
 
                         <>
+
                             <input
+                                className="edit-input"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             />
 
-                            <button onClick={saveTask}>
+                            <button
+                                className="save-btn"
+                                onClick={saveTask}
+                            >
                                 Save
                             </button>
+
                         </>
 
                     ) : (
 
                         <>
-                            <p>{task.title}</p>
 
-                            <button
-                                onClick={() => setEditing(true)}
-                            >
-                                Edit
-                            </button>
+                            <h3 className="task-title">
+                                {task.title}
+                            </h3>
 
-                            <button
-                                className="delete-btn"
-                                onClick={() => onDelete(task.id)}
+                            <span
+                                className={`priority ${task.priority.toLowerCase()}`}
                             >
-                                Delete
-                            </button>
+                                {task.priority}
+                            </span>
+
+                            <div className="task-actions">
+
+                                <button
+                                    className="edit-btn"
+                                    onClick={() => setEditing(true)}
+                                >
+                                    Edit
+                                </button>
+
+                                <button
+                                    className="delete-btn"
+                                    onClick={() => onDelete(task.id)}
+                                >
+                                    Delete
+                                </button>
+
+                            </div>
+
                         </>
 
                     )}

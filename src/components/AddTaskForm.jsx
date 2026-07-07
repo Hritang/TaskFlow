@@ -4,6 +4,7 @@ function AddTaskForm({ onAddTask }) {
 
     const [title, setTitle] = useState("");
     const [status, setStatus] = useState("To Do");
+    const [priority, setPriority] = useState("Medium");
 
     const handleSubmit = (e) => {
 
@@ -11,10 +12,11 @@ function AddTaskForm({ onAddTask }) {
 
         if (title.trim() === "") return;
 
-        onAddTask(title, status);
+        onAddTask(title, status, priority);
 
         setTitle("");
         setStatus("To Do");
+        setPriority("Medium");
 
     };
 
@@ -24,18 +26,27 @@ function AddTaskForm({ onAddTask }) {
 
             <input
                 type="text"
-                placeholder="Enter task..."
+                placeholder="Task title..."
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e)=>setTitle(e.target.value)}
             />
 
             <select
                 value={status}
-                onChange={(e) => setStatus(e.target.value)}
+                onChange={(e)=>setStatus(e.target.value)}
             >
                 <option>To Do</option>
                 <option>In Progress</option>
                 <option>Done</option>
+            </select>
+
+            <select
+                value={priority}
+                onChange={(e)=>setPriority(e.target.value)}
+            >
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
             </select>
 
             <button type="submit">

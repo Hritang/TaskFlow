@@ -1,109 +1,276 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* =========================
+   Global
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-  background: #f3f4f6;
-  font-family: Arial, Helvetica, sans-serif;
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f3f4f6;
 }
 
-nav {
-  background: #2563eb;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
+/* =========================
+   Navbar
+========================= */
 
-.board {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  padding: 40px;
-}
-
-.column {
-  width: 300px;
-  min-height: 450px;
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.15);
-}
-
-.column h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.task-card{
-    background:#e5e7eb;
-    padding:12px;
-    border-radius:8px;
-    margin-top:12px;
-    cursor:pointer;
-}
-
-button{
-    display:block;
-    margin:30px auto;
-    padding:12px 22px;
-    border:none;
-    border-radius:8px;
-    background:#2563eb;
+nav{
+    background:#1e3a8a;
     color:white;
-    font-size:16px;
-    cursor:pointer;
+    text-align:center;
+    padding:22px;
+    font-size:24px;
+    font-weight:bold;
+    letter-spacing:1px;
 }
 
-button:hover{
-    background:#1d4ed8;
-}
+/* =========================
+   Add Task Form
+========================= */
 
 .task-form{
 
     display:flex;
     justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
     gap:15px;
     margin:30px;
 
 }
 
-.task-form input{
+.task-form input,
+.task-form select{
 
-    width:250px;
-    padding:10px;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:15px;
 
 }
 
-.task-form select{
+.task-form input{
 
-    padding:10px;
+    width:260px;
 
 }
 
 .task-form button{
 
-    padding:10px 20px;
+    padding:12px 24px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+.task-form button:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* =========================
+   Board
+========================= */
+
+.board{
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap:25px;
+    padding:20px 30px 40px;
+
+}
+
+/* =========================
+   Column
+========================= */
+
+.column{
+
+    width:320px;
+    min-height:520px;
+    background:#ffffff;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+
+}
+
+.column h2{
+
+    text-align:center;
+    margin-bottom:20px;
+    color:#1e293b;
+
+}
+
+/* =========================
+   Task Card
+========================= */
+
+.task-card{
+
+    background:#ffffff;
+    border-left:5px solid #2563eb;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    transition:.25s;
+
+}
+
+.task-card:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.task-title{
+
+    font-size:18px;
+    margin-bottom:10px;
+    color:#111827;
+
+}
+
+/* =========================
+   Priority Badge
+========================= */
+
+.priority{
+
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:20px;
+    color:white;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:15px;
+
+}
+
+.high{
+
+    background:#dc2626;
+
+}
+
+.medium{
+
+    background:#f59e0b;
+
+}
+
+.low{
+
+    background:#16a34a;
+
+}
+
+/* =========================
+   Edit Input
+========================= */
+
+.edit-input{
+
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.task-actions{
+
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+
+}
+
+.edit-btn,
+.delete-btn,
+.save-btn{
+
+    flex:1;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+    transition:.25s;
+
+}
+
+.edit-btn{
+
+    background:#2563eb;
+
+}
+
+.edit-btn:hover{
+
+    background:#1d4ed8;
 
 }
 
 .delete-btn{
 
-    margin-top:12px;
-    width:100%;
     background:#dc2626;
-    color:white;
-    border:none;
-    padding:8px;
-    border-radius:6px;
-    cursor:pointer;
 
 }
 
 .delete-btn:hover{
 
     background:#b91c1c;
+
+}
+
+.save-btn{
+
+    width:100%;
+    background:#16a34a;
+
+}
+
+.save-btn:hover{
+
+    background:#15803d;
+
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width:1100px){
+
+    .board{
+
+        flex-direction:column;
+        align-items:center;
+
+    }
+
+    .column{
+
+        width:90%;
+
+    }
 
 }

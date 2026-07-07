@@ -1,97 +1,105 @@
 import { useEffect, useState } from "react";
+import { DragDropContext } from "@hello-pangea/dnd";
 
 import Column from "./Column";
 import AddTaskForm from "./AddTaskForm";
-import { DragDropContext } from "@hello-pangea/dnd";
 
 function Board() {
 
     const [tasks, setTasks] = useState(() => {
 
-    const savedTasks = localStorage.getItem("tasks");
+        const savedTasks = localStorage.getItem("tasks");
 
-    return savedTasks
-        ? JSON.parse(savedTasks)
-        : [
-            {
-                id: 1,
-                title: "Learn React",
-                status: "To Do"
-            }
-        ];
+        return savedTasks
+            ? JSON.parse(savedTasks)
+            : [
+                {
+                    id: 1,
+                    title: "Learn React",
+                    status: "To Do",
+                    priority: "High"
+                }
+            ];
 
-});
+    });
+
     useEffect(() => {
 
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
+        localStorage.setItem(
+            "tasks",
+            JSON.stringify(tasks)
+        );
 
-}, [tasks]);
+    }, [tasks]);
 
-    const addTask = (title, status) => {
+    const addTask = (title, status, priority) => {
 
         const newTask = {
 
             id: Date.now(),
             title,
-            status
+            status,
+            priority
 
         };
 
-        setTasks([...tasks, newTask]);
+        setTasks(prevTasks => [...prevTasks, newTask]);
 
     };
+
     const deleteTask = (id) => {
 
-    setTasks(tasks.filter(task => task.id !== id));
+        setTasks(prevTasks =>
+            prevTasks.filter(task => task.id !== id)
+        );
 
-};
+    };
+
     const editTask = (id, newTitle) => {
 
-    setTasks(
+        setTasks(prevTasks =>
 
-        tasks.map(task =>
+            prevTasks.map(task =>
 
-            task.id === id
-                ? { ...task, title: newTitle }
-                : task
+                task.id === id
+                    ? {
+                        ...task,
+                        title: newTitle
+                    }
+                    : task
 
-        )
+            )
 
-    );
+        );
 
-};
+    };
+
+    const handleDragEnd = (result) => {
+
+        const { destination, draggableId } = result;
+
+        if (!destination) return;
+
+        setTasks(prevTasks =>
+
+            prevTasks.map(task =>
+
+                task.id.toString() === draggableId
+                    ? {
+                        ...task,
+                        status: destination.droppableId
+                    }
+                    : task
+
+            )
+
+        );
+
+    };
 
     return (
 
-    <DragDropContext
-        onDragEnd={(result) => {
-
-    const { destination, draggableId } = result;
-
-    if (!destination) return;
-
-    setTasks(prevTasks =>
-
-        prevTasks.map(task =>
-
-            task.id.toString() === draggableId
-                ? {
-                    ...task,
-                    status: destination.droppableId
-                }
-                : task
-
-        )
-
-    );
-
-}}
-    >
-
-        <>
+        <DragDropContext onDragEnd={handleDragEnd}>
 
             <AddTaskForm onAddTask={addTask} />
 
@@ -120,11 +128,9 @@ function Board() {
 
             </div>
 
-        </>
+        </DragDropContext>
 
-    </DragDropContext>
-
-);
+    );
 
 }
 
