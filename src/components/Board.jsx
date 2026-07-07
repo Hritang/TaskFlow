@@ -1,17 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Column from "./Column";
 import AddTaskForm from "./AddTaskForm";
 
 function Board() {
 
-    const [tasks, setTasks] = useState([
-        {
-            id: 1,
-            title: "Learn React",
-            status: "To Do"
-        }
-    ]);
+    const [tasks, setTasks] = useState(() => {
+
+    const savedTasks = localStorage.getItem("tasks");
+
+    return savedTasks
+        ? JSON.parse(savedTasks)
+        : [
+            {
+                id: 1,
+                title: "Learn React",
+                status: "To Do"
+            }
+        ];
+
+});
+    useEffect(() => {
+
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
+    );
+
+}, [tasks]);
 
     const addTask = (title, status) => {
 
