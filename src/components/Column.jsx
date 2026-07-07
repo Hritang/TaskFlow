@@ -1,6 +1,6 @@
 import TaskCard from "./TaskCard";
 
-function Column({ title, tasks, onDelete }) {
+function Column({ title, tasks, onDelete, onEdit }) {
 
     return (
 
@@ -8,12 +8,13 @@ function Column({ title, tasks, onDelete }) {
 
             <h2>{title}</h2>
 
-            {tasks.map((task) => (
+            {tasks.map(task => (
 
                 <TaskCard
                     key={task.id}
                     task={task}
                     onDelete={onDelete}
+                    onEdit={onEdit}
                 />
 
             ))}

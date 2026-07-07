@@ -31,6 +31,21 @@ function Board() {
     setTasks(tasks.filter(task => task.id !== id));
 
 };
+    const editTask = (id, newTitle) => {
+
+    setTasks(
+
+        tasks.map(task =>
+
+            task.id === id
+                ? { ...task, title: newTitle }
+                : task
+
+        )
+
+    );
+
+};
 
     return (
 
@@ -44,18 +59,21 @@ function Board() {
                     title="To Do"
                     tasks={tasks.filter(task => task.status === "To Do")}
                     onDelete={deleteTask}
+                    onEdit={editTask}
                 />
 
                 <Column
                     title="In Progress"
                     tasks={tasks.filter(task => task.status === "In Progress")}
                     onDelete={deleteTask}
+                    onEdit={editTask}
                 />
 
                 <Column
                     title="Done"
                     tasks={tasks.filter(task => task.status === "Done")}
                     onDelete={deleteTask}
+                    onEdit={editTask}
                 />
 
             </div>
