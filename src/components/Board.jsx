@@ -68,8 +68,27 @@ function Board() {
 
     <DragDropContext
         onDragEnd={(result) => {
-            console.log(result);
-        }}
+
+    const { destination, draggableId } = result;
+
+    if (!destination) return;
+
+    setTasks(prevTasks =>
+
+        prevTasks.map(task =>
+
+            task.id.toString() === draggableId
+                ? {
+                    ...task,
+                    status: destination.droppableId
+                }
+                : task
+
+        )
+
+    );
+
+}}
     >
 
         <>
