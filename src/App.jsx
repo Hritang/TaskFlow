@@ -1,10 +1,18 @@
 import "./App.css";
 
+import Navbar from "./components/Navbar";
+import Column from "./components/Column";
+
 function App() {
   return (
     <>
-      <h1>TaskFlow</h1>
-      <p>My first React application</p>
+      <Navbar />
+
+      <Column title="To Do" />
+
+      <Column title="In Progress" />
+
+      <Column title="Done" />
     </>
   );
 }
