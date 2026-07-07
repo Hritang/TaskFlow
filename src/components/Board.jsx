@@ -17,7 +17,8 @@ function Board() {
                     id: 1,
                     title: "Learn React",
                     status: "To Do",
-                    priority: "High"
+                    priority: "High",
+                    dueDate: ""
                 }
             ];
 
@@ -35,14 +36,15 @@ function Board() {
 
     }, [tasks]);
 
-    const addTask = (title, status, priority) => {
+    const addTask = (title, status, priority, dueDate) => {
 
         const newTask = {
 
             id: Date.now(),
             title,
             status,
-            priority
+            priority,
+            dueDate
 
         };
 
@@ -154,12 +156,10 @@ function Board() {
                     value={priorityFilter}
                     onChange={(e) => setPriorityFilter(e.target.value)}
                 >
-
                     <option>All</option>
                     <option>High</option>
                     <option>Medium</option>
                     <option>Low</option>
-
                 </select>
 
             </div>

@@ -496,3 +496,89 @@ nav p{
     font-size:14px;
 
 }
+
+
+/* =========================
+   Task Form Container
+========================= */
+
+.task-form-container{
+
+    width:90%;
+    max-width:1200px;
+
+    margin:30px auto;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:14px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+.task-form-container h2{
+
+    margin-bottom:20px;
+
+    color:#1e293b;
+
+}
+
+/* =========================
+   Due Date
+========================= */
+
+.due-date{
+
+    margin-top:10px;
+
+    color:#475569;
+
+    font-size:14px;
+
+}
+
+/* =========================
+   Overdue Badge
+========================= */
+
+.overdue{
+
+    margin-top:12px;
+
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:6px;
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+    font-weight:bold;
+
+    font-size:12px;
+
+}
+
+/* =========================
+   Better Task Card
+========================= */
+
+.task-card{
+
+    transition:.25s;
+
+}
+
+.task-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}

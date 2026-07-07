@@ -15,6 +15,13 @@ function TaskCard({ task, index, onDelete, onEdit }) {
 
     };
 
+    const today = new Date().toISOString().split("T")[0];
+
+    const isOverdue =
+        task.dueDate &&
+        task.status !== "Done" &&
+        task.dueDate < today;
+
     return (
 
         <Draggable
@@ -59,10 +66,30 @@ function TaskCard({ task, index, onDelete, onEdit }) {
                             </h3>
 
                             <span
-                                className={`priority ${task.priority.toLowerCase()}`}
+                                className={`priority ${(task.priority || "Medium").toLowerCase()}`}
                             >
-                                {task.priority}
+                                {task.priority || "Medium"}
                             </span>
+
+                            {task.dueDate && (
+
+                                <div className="due-date">
+
+                                    📅 {task.dueDate}
+
+                                </div>
+
+                            )}
+
+                            {isOverdue && (
+
+                                <div className="overdue">
+
+                                    ⚠ OVERDUE
+
+                                </div>
+
+                            )}
 
                             <div className="task-actions">
 
@@ -70,14 +97,14 @@ function TaskCard({ task, index, onDelete, onEdit }) {
                                     className="edit-btn"
                                     onClick={() => setEditing(true)}
                                 >
-                                    Edit
+                                    ✏ Edit
                                 </button>
 
                                 <button
                                     className="delete-btn"
                                     onClick={() => onDelete(task.id)}
                                 >
-                                    Delete
+                                    🗑 Delete
                                 </button>
 
                             </div>
