@@ -36,3 +36,11 @@ nav {
   text-align: center;
   margin-bottom: 20px;
 }
+
+.task-card{
+    background:#e5e7eb;
+    padding:12px;
+    border-radius:8px;
+    margin-top:12px;
+    cursor:pointer;
+}
