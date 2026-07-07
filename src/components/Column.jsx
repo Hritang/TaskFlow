@@ -17,17 +17,37 @@ function Column({ title, tasks, onDelete, onEdit }) {
 
                     <h2>{title}</h2>
 
-                    {tasks.map((task, index) => (
+                    {tasks.length === 0 ? (
 
-                        <TaskCard
-                            key={task.id}
-                            task={task}
-                            index={index}
-                            onDelete={onDelete}
-                            onEdit={onEdit}
-                        />
+                        <div className="empty-column">
 
-                    ))}
+                            <div className="empty-icon">
+                                📋
+                            </div>
+
+                            <h3>No Tasks</h3>
+
+                            <p>
+                                Drag a task here
+                            </p>
+
+                        </div>
+
+                    ) : (
+
+                        tasks.map((task, index) => (
+
+                            <TaskCard
+                                key={task.id}
+                                task={task}
+                                index={index}
+                                onDelete={onDelete}
+                                onEdit={onEdit}
+                            />
+
+                        ))
+
+                    )}
 
                     {provided.placeholder}
 

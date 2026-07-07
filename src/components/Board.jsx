@@ -23,6 +23,9 @@ function Board() {
 
     });
 
+    const [search, setSearch] = useState("");
+    const [priorityFilter, setPriorityFilter] = useState("All");
+
     useEffect(() => {
 
         localStorage.setItem(
@@ -43,23 +46,23 @@ function Board() {
 
         };
 
-        setTasks(prevTasks => [...prevTasks, newTask]);
+        setTasks(prev => [...prev, newTask]);
 
     };
 
     const deleteTask = (id) => {
 
-        setTasks(prevTasks =>
-            prevTasks.filter(task => task.id !== id)
+        setTasks(prev =>
+            prev.filter(task => task.id !== id)
         );
 
     };
 
     const editTask = (id, newTitle) => {
 
-        setTasks(prevTasks =>
+        setTasks(prev =>
 
-            prevTasks.map(task =>
+            prev.map(task =>
 
                 task.id === id
                     ? {
@@ -80,9 +83,9 @@ function Board() {
 
         if (!destination) return;
 
-        setTasks(prevTasks =>
+        setTasks(prev =>
 
-            prevTasks.map(task =>
+            prev.map(task =>
 
                 task.id.toString() === draggableId
                     ? {
@@ -97,9 +100,69 @@ function Board() {
 
     };
 
+    const filteredTasks = tasks.filter(task => {
+
+        const matchesSearch =
+            task.title.toLowerCase().includes(search.toLowerCase());
+
+        const matchesPriority =
+            priorityFilter === "All" ||
+            task.priority === priorityFilter;
+
+        return matchesSearch && matchesPriority;
+
+    });
+
     return (
 
         <DragDropContext onDragEnd={handleDragEnd}>
+
+            <div className="dashboard">
+
+                <div className="dashboard-card">
+                    <h3>📌 Total Tasks</h3>
+                    <p>{tasks.length}</p>
+                </div>
+
+                <div className="dashboard-card">
+                    <h3>📝 To Do</h3>
+                    <p>{tasks.filter(t => t.status === "To Do").length}</p>
+                </div>
+
+                <div className="dashboard-card">
+                    <h3>⚡ In Progress</h3>
+                    <p>{tasks.filter(t => t.status === "In Progress").length}</p>
+                </div>
+
+                <div className="dashboard-card">
+                    <h3>✅ Completed</h3>
+                    <p>{tasks.filter(t => t.status === "Done").length}</p>
+                </div>
+
+            </div>
+
+            <div className="filters">
+
+                <input
+                    type="text"
+                    placeholder="Search tasks..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+
+                <select
+                    value={priorityFilter}
+                    onChange={(e) => setPriorityFilter(e.target.value)}
+                >
+
+                    <option>All</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+
+                </select>
+
+            </div>
 
             <AddTaskForm onAddTask={addTask} />
 
@@ -107,21 +170,21 @@ function Board() {
 
                 <Column
                     title="To Do"
-                    tasks={tasks.filter(task => task.status === "To Do")}
+                    tasks={filteredTasks.filter(task => task.status === "To Do")}
                     onDelete={deleteTask}
                     onEdit={editTask}
                 />
 
                 <Column
                     title="In Progress"
-                    tasks={tasks.filter(task => task.status === "In Progress")}
+                    tasks={filteredTasks.filter(task => task.status === "In Progress")}
                     onDelete={deleteTask}
                     onEdit={editTask}
                 />
 
                 <Column
                     title="Done"
-                    tasks={tasks.filter(task => task.status === "Done")}
+                    tasks={filteredTasks.filter(task => task.status === "Done")}
                     onDelete={deleteTask}
                     onEdit={editTask}
                 />
