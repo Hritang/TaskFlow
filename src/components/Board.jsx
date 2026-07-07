@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import Column from "./Column";
 import AddTaskForm from "./AddTaskForm";
+import { DragDropContext } from "@hello-pangea/dnd";
 
 function Board() {
 
@@ -65,6 +66,12 @@ function Board() {
 
     return (
 
+    <DragDropContext
+        onDragEnd={(result) => {
+            console.log(result);
+        }}
+    >
+
         <>
 
             <AddTaskForm onAddTask={addTask} />
@@ -96,7 +103,9 @@ function Board() {
 
         </>
 
-    );
+    </DragDropContext>
+
+);
 
 }
 
