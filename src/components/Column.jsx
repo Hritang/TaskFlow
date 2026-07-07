@@ -1,26 +1,26 @@
-import { useState } from "react";
 import TaskCard from "./TaskCard";
 
-function Column(props) {
-
-  const [tasks, setTasks] = useState([
-    "Learn React"
-  ]);
+function Column({ title, tasks }) {
 
   return (
+
     <div className="column">
 
-      <h2>{props.title}</h2>
+      <h2>{title}</h2>
 
-      {tasks.map((task) => (
+      {tasks.map(task => (
+
         <TaskCard
-          key={task}
-          title={task}
+          key={task.id}
+          title={task.title}
         />
+
       ))}
 
     </div>
+
   );
+
 }
 
 export default Column;
