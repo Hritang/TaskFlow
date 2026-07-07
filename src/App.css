@@ -60,3 +60,31 @@ button{
 button:hover{
     background:#1d4ed8;
 }
+
+.task-form{
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:30px;
+
+}
+
+.task-form input{
+
+    width:250px;
+    padding:10px;
+
+}
+
+.task-form select{
+
+    padding:10px;
+
+}
+
+.task-form button{
+
+    padding:10px 20px;
+
+}

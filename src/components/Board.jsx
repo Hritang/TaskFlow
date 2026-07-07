@@ -1,58 +1,60 @@
 import { useState } from "react";
 
 import Column from "./Column";
+import AddTaskForm from "./AddTaskForm";
 
 function Board() {
 
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Learn React",
-      status: "To Do"
-    }
-  ]);
+    const [tasks, setTasks] = useState([
+        {
+            id: 1,
+            title: "Learn React",
+            status: "To Do"
+        }
+    ]);
 
-  const addTask = () => {
+    const addTask = (title, status) => {
 
-    const newTask = {
-      id: Date.now(),
-      title: "New Task",
-      status: "To Do"
+        const newTask = {
+
+            id: Date.now(),
+            title,
+            status
+
+        };
+
+        setTasks([...tasks, newTask]);
+
     };
 
-    setTasks([...tasks, newTask]);
+    return (
 
-  };
+        <>
 
-  return (
+            <AddTaskForm onAddTask={addTask} />
 
-    <>
-      <button onClick={addTask}>
-        + Add Task
-      </button>
+            <div className="board">
 
-      <div className="board">
+                <Column
+                    title="To Do"
+                    tasks={tasks.filter(task => task.status === "To Do")}
+                />
 
-        <Column
-          title="To Do"
-          tasks={tasks.filter(task => task.status === "To Do")}
-        />
+                <Column
+                    title="In Progress"
+                    tasks={tasks.filter(task => task.status === "In Progress")}
+                />
 
-        <Column
-          title="In Progress"
-          tasks={tasks.filter(task => task.status === "In Progress")}
-        />
+                <Column
+                    title="Done"
+                    tasks={tasks.filter(task => task.status === "Done")}
+                />
 
-        <Column
-          title="Done"
-          tasks={tasks.filter(task => task.status === "Done")}
-        />
+            </div>
 
-      </div>
+        </>
 
-    </>
-
-  );
+    );
 
 }
 
