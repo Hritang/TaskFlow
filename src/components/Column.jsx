@@ -1,25 +1,26 @@
 import TaskCard from "./TaskCard";
 
-function Column({ title, tasks }) {
+function Column({ title, tasks, onDelete }) {
 
-  return (
+    return (
 
-    <div className="column">
+        <div className="column">
 
-      <h2>{title}</h2>
+            <h2>{title}</h2>
 
-      {tasks.map(task => (
+            {tasks.map((task) => (
 
-        <TaskCard
-          key={task.id}
-          title={task.title}
-        />
+                <TaskCard
+                    key={task.id}
+                    task={task}
+                    onDelete={onDelete}
+                />
 
-      ))}
+            ))}
 
-    </div>
+        </div>
 
-  );
+    );
 
 }
 

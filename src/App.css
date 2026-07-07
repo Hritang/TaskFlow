@@ -88,3 +88,22 @@ button:hover{
     padding:10px 20px;
 
 }
+
+.delete-btn{
+
+    margin-top:12px;
+    width:100%;
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:8px;
+    border-radius:6px;
+    cursor:pointer;
+
+}
+
+.delete-btn:hover{
+
+    background:#b91c1c;
+
+}
