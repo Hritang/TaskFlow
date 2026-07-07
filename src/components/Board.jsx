@@ -1,11 +1,23 @@
 import Column from "./Column";
 
 function Board() {
+
+  const columns = [
+    "To Do",
+    "In Progress",
+    "Done"
+  ];
+
   return (
     <div className="board">
-      <Column title="To Do" />
-      <Column title="In Progress" />
-      <Column title="Done" />
+
+      {columns.map((title) => (
+        <Column
+          key={title}
+          title={title}
+        />
+      ))}
+
     </div>
   );
 }
