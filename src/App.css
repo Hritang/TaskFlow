@@ -1,16 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* =========================
-   Global
+   Theme Variables
 ========================= */
 
+:root{
+
+    --bg:#eef2f7;
+    --surface:#ffffff;
+    --surface2:#f8fafc;
+
+    --text:#111827;
+    --text-light:#64748b;
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+
+    --danger:#dc2626;
+    --danger-dark:#b91c1c;
+
+    --success:#16a34a;
+    --warning:#f59e0b;
+
+    --border:#dbe3ef;
+
+    --shadow:0 8px 24px rgba(15,23,42,.08);
+
+}
+
+body.dark{
+
+    --bg:#0f172a;
+    --surface:#1e293b;
+    --surface2:#334155;
+
+    --text:#f8fafc;
+    --text-light:#cbd5e1;
+
+    --border:#475569;
+
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+
+}
+
+/* ========================= */
+
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#eef2f7;
+
+    background:var(--bg);
+    color:var(--text);
+
+    font-family:"Inter",sans-serif;
+
+    transition:.35s;
+
 }
 
 /* =========================
@@ -19,108 +76,161 @@ body{
 
 nav{
 
-    background:linear-gradient(135deg,#2563eb,#1e40af);
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
 
     color:white;
 
-    text-align:center;
+    padding:22px 40px;
 
-    padding:28px;
+    box-shadow:var(--shadow);
 
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.navbar-content{
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
 
 }
 
 nav h1{
 
-    font-size:32px;
+    font-size:30px;
 
-    margin-bottom:8px;
+    font-weight:700;
 
 }
 
 nav p{
 
-    font-size:15px;
+    margin-top:5px;
 
     color:#dbeafe;
 
 }
 
+.theme-toggle{
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.theme-toggle:hover{
+
+    transform:rotate(20deg) scale(1.08);
+
+}
+
 /* =========================
-   Dashboard
+Dashboard
 ========================= */
 
 .dashboard{
 
     width:90%;
-    max-width:1200px;
-    margin:30px auto;
+    max-width:1300px;
+
+    margin:35px auto;
 
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
-    gap:20px;
+
+    gap:22px;
 
 }
 
 .dashboard-card{
 
-    background:white;
+    background:var(--surface);
 
-    border-top:5px solid #2563eb;
+    border-radius:18px;
 
-    padding:22px;
+    padding:25px;
 
-    border-radius:14px;
+    box-shadow:var(--shadow);
 
-    text-align:center;
+    transition:.3s;
 
-    box-shadow:0 6px 18px rgba(0,0,0,.08);
-
-    transition:.25s;
+    border-top:5px solid var(--primary);
 
 }
 
 .dashboard-card:hover{
 
-    transform:translateY(-5px);
+    transform:translateY(-6px);
 
 }
 
 .dashboard-card h3{
 
-    color:#64748b;
+    color:var(--text-light);
 
-    font-size:16px;
-
-    margin-bottom:12px;
+    margin-bottom:15px;
 
 }
 
 .dashboard-card p{
 
-    font-size:36px;
+    color:var(--primary);
 
-    font-weight:bold;
+    font-size:38px;
 
-    color:#2563eb;
+    font-weight:700;
 
 }
 
 /* =========================
-   Search + Filter
+Filters
 ========================= */
 
 .filters{
 
     width:90%;
-    max-width:1200px;
+    max-width:1300px;
 
-    margin:0 auto 30px;
+    margin:25px auto;
 
     display:flex;
-    justify-content:space-between;
-    gap:20px;
+
+    gap:18px;
+
+}
+
+.filters input,
+.filters select{
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:14px;
+
+    font-size:15px;
 
 }
 
@@ -128,73 +238,71 @@ nav p{
 
     flex:1;
 
-    padding:14px;
-
-    border-radius:10px;
-    border:1px solid #cbd5e1;
-
-    font-size:15px;
-
-}
-
-.filters select{
-
-    width:180px;
-
-    padding:14px;
-
-    border-radius:10px;
-    border:1px solid #cbd5e1;
-
 }
 
 /* =========================
-   Add Task Form
+Task Form
 ========================= */
+
+.task-form-container{
+
+    width:90%;
+    max-width:1300px;
+
+    margin:30px auto;
+
+    background:var(--surface);
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.task-form-container h2{
+
+    margin-bottom:22px;
+
+}
 
 .task-form{
 
-    width:90%;
-    max-width:1200px;
+    display:grid;
 
-    margin:25px auto;
+    grid-template-columns:2fr 1fr 1fr 1fr auto;
 
-    display:flex;
     gap:15px;
-    flex-wrap:wrap;
 
 }
 
-.task-form input{
-
-    flex:1;
-    min-width:250px;
-
-    padding:12px;
-
-    border-radius:8px;
-    border:1px solid #cbd5e1;
-
-}
-
+.task-form input,
 .task-form select{
 
-    padding:12px;
+    background:var(--surface2);
 
-    border-radius:8px;
-    border:1px solid #cbd5e1;
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    padding:14px;
 
 }
 
 .task-form button{
 
-    padding:12px 26px;
+    background:var(--primary);
 
-    background:#2563eb;
     color:white;
 
     border:none;
-    border-radius:8px;
+
+    border-radius:10px;
+
+    padding:14px 22px;
 
     cursor:pointer;
 
@@ -204,12 +312,12 @@ nav p{
 
 .task-form button:hover{
 
-    background:#1d4ed8;
+    background:var(--primary-dark);
 
 }
 
 /* =========================
-   Board
+Board
 ========================= */
 
 .board{
@@ -217,143 +325,131 @@ nav p{
     width:90%;
     max-width:1300px;
 
-    margin:auto;
+    margin:35px auto;
 
     display:flex;
+
     gap:25px;
 
-    justify-content:center;
     align-items:flex-start;
 
-    padding-bottom:40px;
-
 }
-
-/* =========================
-   Columns
-========================= */
 
 .column{
 
     flex:1;
 
-    min-height:550px;
+    background:var(--surface);
 
-    background:white;
-
-    border-radius:12px;
+    border-radius:18px;
 
     padding:20px;
 
-    box-shadow:0 5px 12px rgba(0,0,0,.08);
+    min-height:560px;
+
+    box-shadow:var(--shadow);
 
 }
 
 .column h2{
 
-    text-align:center;
     margin-bottom:20px;
 
-    color:#1e293b;
+    text-align:center;
 
 }
 
 /* =========================
-   Task Card
+Task Card
 ========================= */
 
 .task-card{
 
-    background:white;
+    background:var(--surface2);
 
-    border-left:6px solid #2563eb;
+    border-left:6px solid var(--primary);
 
-    border-radius:10px;
+    border-radius:12px;
 
     padding:16px;
 
     margin-bottom:16px;
 
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    transition:.3s;
+
+}
+
+.task-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:var(--shadow);
 
 }
 
 .task-title{
 
-    font-size:18px;
-    margin-bottom:10px;
+    margin-bottom:12px;
 
-    color:#111827;
+    font-size:18px;
 
 }
-
-/* =========================
-   Priority
-========================= */
 
 .priority{
 
     display:inline-block;
 
-    margin-bottom:15px;
+    padding:5px 12px;
 
-    padding:6px 12px;
-
-    border-radius:20px;
+    border-radius:30px;
 
     color:white;
 
-    font-size:13px;
+    font-size:12px;
 
-    font-weight:bold;
-
-}
-
-.high{
-
-    background:#dc2626;
+    font-weight:600;
 
 }
 
-.medium{
+.high{background:var(--danger);}
+.medium{background:var(--warning);}
+.low{background:var(--success);}
 
-    background:#f59e0b;
+.due-date{
+
+    margin-top:12px;
+
+    color:var(--text-light);
 
 }
 
-.low{
+.overdue{
 
-    background:#16a34a;
+    margin-top:10px;
 
-}
+    display:inline-block;
 
-/* =========================
-   Edit Input
-========================= */
-
-.edit-input{
-
-    width:100%;
-
-    padding:10px;
-
-    margin-bottom:10px;
+    padding:5px 10px;
 
     border-radius:8px;
 
-    border:1px solid #cbd5e1;
+    background:#fee2e2;
+
+    color:#991b1b;
+
+    font-size:12px;
+
+    font-weight:700;
 
 }
-
-/* =========================
-   Buttons
-========================= */
 
 .task-actions{
 
     display:flex;
 
     gap:10px;
+
+    margin-top:18px;
 
 }
 
@@ -363,15 +459,15 @@ nav p{
 
     flex:1;
 
-    padding:10px;
-
     border:none;
 
-    border-radius:8px;
+    border-radius:10px;
 
-    color:white;
+    padding:10px;
 
     cursor:pointer;
+
+    color:white;
 
     transition:.25s;
 
@@ -379,49 +475,93 @@ nav p{
 
 .edit-btn{
 
-    background:#2563eb;
+    background:var(--primary);
 
 }
 
 .edit-btn:hover{
 
-    background:#1d4ed8;
+    background:var(--primary-dark);
 
 }
 
 .delete-btn{
 
-    background:#dc2626;
+    background:var(--danger);
 
 }
 
 .delete-btn:hover{
 
-    background:#b91c1c;
+    background:var(--danger-dark);
 
 }
 
 .save-btn{
 
-    background:#16a34a;
+    background:var(--success);
 
 }
 
-.save-btn:hover{
+.edit-input{
 
-    background:#15803d;
+    width:100%;
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+    padding:12px;
+
+    border-radius:10px;
 
 }
 
 /* =========================
-   Responsive
+Empty State
 ========================= */
 
-@media(max-width:1000px){
+.empty-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:320px;
+
+    color:var(--text-light);
+
+}
+
+.empty-icon{
+
+    font-size:60px;
+
+    margin-bottom:18px;
+
+}
+
+/* =========================
+Responsive
+========================= */
+
+@media(max-width:1100px){
 
     .dashboard{
 
         grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .task-form{
+
+        grid-template-columns:1fr 1fr;
 
     }
 
@@ -449,136 +589,60 @@ nav p{
 
     .task-form{
 
+        grid-template-columns:1fr;
+
+    }
+
+    .navbar-content{
+
         flex-direction:column;
+
+        gap:20px;
+
+    }
+
+    .column{
+
+        width:100%;
 
     }
 
 }
 
-
 /* =========================
-   Empty Column
+   Drag Handle
 ========================= */
 
-.empty-column{
+.drag-handle{
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    cursor:grab;
 
-    min-height:320px;
+    width:fit-content;
+
+    margin-left:auto;
+
+    margin-bottom:12px;
 
     color:#94a3b8;
 
-    text-align:center;
+    font-size:22px;
 
-}
-
-.empty-icon{
-
-    font-size:60px;
-
-    margin-bottom:15px;
-
-}
-
-.empty-column h3{
-
-    margin-bottom:8px;
-
-    color:#64748b;
-
-}
-
-.empty-column p{
-
-    font-size:14px;
-
-}
-
-
-/* =========================
-   Task Form Container
-========================= */
-
-.task-form-container{
-
-    width:90%;
-    max-width:1200px;
-
-    margin:30px auto;
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:14px;
-
-    box-shadow:0 6px 18px rgba(0,0,0,.08);
-
-}
-
-.task-form-container h2{
-
-    margin-bottom:20px;
-
-    color:#1e293b;
-
-}
-
-/* =========================
-   Due Date
-========================= */
-
-.due-date{
-
-    margin-top:10px;
-
-    color:#475569;
-
-    font-size:14px;
-
-}
-
-/* =========================
-   Overdue Badge
-========================= */
-
-.overdue{
-
-    margin-top:12px;
-
-    display:inline-block;
-
-    padding:6px 10px;
-
-    border-radius:6px;
-
-    background:#fee2e2;
-
-    color:#b91c1c;
-
-    font-weight:bold;
-
-    font-size:12px;
-
-}
-
-/* =========================
-   Better Task Card
-========================= */
-
-.task-card{
+    user-select:none;
 
     transition:.25s;
 
 }
 
-.task-card:hover{
+.drag-handle:hover{
 
-    transform:translateY(-4px);
+    color:#2563eb;
 
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    transform:scale(1.15);
+
+}
+
+.drag-handle:active{
+
+    cursor:grabbing;
 
 }

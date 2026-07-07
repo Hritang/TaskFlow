@@ -3,6 +3,7 @@ import { DragDropContext } from "@hello-pangea/dnd";
 
 import Column from "./Column";
 import AddTaskForm from "./AddTaskForm";
+import toast from "react-hot-toast";
 
 function Board() {
 
@@ -38,27 +39,33 @@ function Board() {
 
     const addTask = (title, status, priority, dueDate) => {
 
-        const newTask = {
+    const newTask = {
 
-            id: Date.now(),
-            title,
-            status,
-            priority,
-            dueDate
-
-        };
-
-        setTasks(prev => [...prev, newTask]);
+        id: Date.now(),
+        title,
+        status,
+        priority,
+        dueDate
 
     };
+
+    setTasks(prev => [...prev, newTask]);
+
+    toast.success("Task Added");
+
+};
 
     const deleteTask = (id) => {
 
-        setTasks(prev =>
-            prev.filter(task => task.id !== id)
-        );
+    setTasks(prev =>
 
-    };
+        prev.filter(task => task.id !== id)
+
+    );
+
+    toast.success("Task Deleted");
+
+};
 
     const editTask = (id, newTitle) => {
 
@@ -76,6 +83,7 @@ function Board() {
             )
 
         );
+        toast.success("Task Updated");
 
     };
 
@@ -99,6 +107,9 @@ function Board() {
             )
 
         );
+        toast("Task Moved", {
+    icon: "📦"
+});
 
     };
 

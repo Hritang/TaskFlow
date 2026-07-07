@@ -35,8 +35,14 @@ function TaskCard({ task, index, onDelete, onEdit }) {
                     className="task-card"
                     ref={provided.innerRef}
                     {...provided.draggableProps}
-                    {...provided.dragHandleProps}
                 >
+
+                    <div
+                        className="drag-handle"
+                        {...provided.dragHandleProps}
+                    >
+                        ⋮⋮
+                    </div>
 
                     {editing ? (
 
@@ -74,9 +80,7 @@ function TaskCard({ task, index, onDelete, onEdit }) {
                             {task.dueDate && (
 
                                 <div className="due-date">
-
                                     📅 {task.dueDate}
-
                                 </div>
 
                             )}
@@ -84,9 +88,7 @@ function TaskCard({ task, index, onDelete, onEdit }) {
                             {isOverdue && (
 
                                 <div className="overdue">
-
                                     ⚠ OVERDUE
-
                                 </div>
 
                             )}
